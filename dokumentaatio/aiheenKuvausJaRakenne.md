@@ -5,9 +5,9 @@
 **Käyttäjät:** Pelaaja.
 
 **Pelaajan toiminnot:** 
-  *Pelinkäynnistäminen
-    *Pelin sisällä liikkuminen ja ampuminen
-  *Aiempien pisteiden listaus
-  *Pelin ohjeiden lukeminen
-  *Tarinan lukeminen
+*Pelinkäynnistäminen
+  *Pelin sisällä liikkuminen ja ampuminen
+*Aiempien pisteiden listaus
+*Pelin ohjeiden lukeminen
+*Tarinan lukeminen
 
