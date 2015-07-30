@@ -5,6 +5,7 @@
 **Käyttäjät:** Pelaaja.
 
 **Pelaajan toiminnot:** 
+
 *Pelinkäynnistäminen
   *Pelin sisällä liikkuminen ja ampuminen
 *Aiempien pisteiden listaus
