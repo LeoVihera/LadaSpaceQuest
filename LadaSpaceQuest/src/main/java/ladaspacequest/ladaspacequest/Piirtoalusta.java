@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import kuviot.Ammus;
 
 public class Piirtoalusta extends JPanel implements ActionListener {
 
@@ -23,13 +24,18 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         hahmo.piirra(graphics);
+        for (Ammus ammus : hahmo.getAmmukset()) {
+            ammus.piirra(graphics);
+        }
     }
-
 
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == timer) {
             hahmo.siirry();
-            repaint();// this will call at every 1 second
+            for (Ammus ammus : hahmo.getAmmukset()) {
+                ammus.siirry();
+            }
+            repaint();
         }
 
     }

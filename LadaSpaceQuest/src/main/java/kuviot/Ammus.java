@@ -12,8 +12,13 @@ public class Ammus extends Kuvio{
     }
     @Override
     public void piirra(Graphics graphics){
-        graphics.fillRect(kordX, kordY, 3, 10);
+        graphics.fillRect(kordX, kordY, 10, 3);
     }
+    
+    @Override
+   public void siirry(){
+       this.kordX = this.kordX + 20;
+   }
 }
 
  

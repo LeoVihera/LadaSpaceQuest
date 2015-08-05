@@ -15,8 +15,8 @@ public class Kayttoliittyma implements Runnable {
     private JFrame frame;
     private Lada hahmo;
 
-    public Kayttoliittyma(Lada hahmo) {
-        this.hahmo = hahmo;
+    public Kayttoliittyma() {
+        this.hahmo = new Lada();
     }
 
     private void luoKomponentit(Container container) {

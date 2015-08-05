@@ -1,32 +1,38 @@
-
-
 package kuviot;
-
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.List;
+import java.util.ArrayList;
 
-public class Lada extends Kuvio{
+public class Lada extends Kuvio {
+
     private int suunta;
-    
+    private ArrayList<Ammus> ammukset;
 
-    public Lada(int x, int y) {
-        super(x, y);
+    public Lada() {
+        super(100, 350);
         this.suunta = 1;
+        this.ammukset = new ArrayList<Ammus>();
     }
 
-    
-    public void siirry(){
-        this.kordY = this.kordY + suunta;
-        this.suunta = this.suunta + 1;
+    @Override
+    public void siirry() {
+        if (this.kordY <= -this.suunta) {
+            this.suunta = 1;
+            this.kordY = 0;
+        } else {
+            this.kordY = this.kordY + suunta;
+            this.suunta = this.suunta + 1;
+        }
     }
-    
-    public void hyppy(){
+
+    public void hyppy() {
         this.suunta = -15;
     }
 
-    public void ammu(){
-        
+    public void ammu() {
+        this.ammukset.add(new Ammus(this.kordX + 30, this.kordY));
     }
 
     @Override
@@ -37,12 +43,19 @@ public class Lada extends Kuvio{
         graphics.setColor(Color.DARK_GRAY);
         graphics.fillOval(kordX + 4, kordY + 10, 17, 17);
         graphics.fillOval(kordX + 28, kordY + 10, 17, 17);
-        
-        
+
+    }
+
+    public int getSuunta() {
+        return suunta;
+    }
+
+    public void setSuunta(int suunta) {
+        this.suunta = suunta;
     }
 
     public int getKordX() {
-        return kordX;
+        return this.kordX;
     }
 
     public void setKordX(int kordX) {
@@ -50,10 +63,20 @@ public class Lada extends Kuvio{
     }
 
     public int getKordY() {
-        return kordY;
+        return this.kordY;
     }
 
     public void setKordY(int kordY) {
         this.kordY = kordY;
     }
+
+    public ArrayList<Ammus> getAmmukset() {
+        return ammukset;
+    }
+
+    public void setAmmukset(ArrayList<Ammus> ammukset) {
+        this.ammukset = ammukset;
+    }
+
+
 }

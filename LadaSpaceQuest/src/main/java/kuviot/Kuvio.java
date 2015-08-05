@@ -15,9 +15,7 @@ public abstract class Kuvio {
         this.kordY = y;
     }
 
-    public void siirry(int x, int y) {
-        kordY = kordY + y;
-        kordX = kordX + x;
+    public void siirry() {
     }
     
     public void piirra(Graphics graphics){
