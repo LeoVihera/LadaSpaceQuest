@@ -1,4 +1,4 @@
-package ladaspacequest.ladaspacequest;
+package ladaspacequest;
 
 import javax.swing.SwingUtilities;
 import kuviot.Lada;

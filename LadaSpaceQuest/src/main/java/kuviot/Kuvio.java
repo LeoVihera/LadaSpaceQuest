@@ -15,6 +15,22 @@ public abstract class Kuvio {
         this.kordY = y;
     }
 
+    public int getKordX() {
+        return kordX;
+    }
+
+    public void setKordX(int kordX) {
+        this.kordX = kordX;
+    }
+
+    public int getKordY() {
+        return kordY;
+    }
+
+    public void setKordY(int kordY) {
+        this.kordY = kordY;
+    }
+
     public void siirry() {
     }
     

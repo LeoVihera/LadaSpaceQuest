@@ -54,22 +54,6 @@ public class Lada extends Kuvio {
         this.suunta = suunta;
     }
 
-    public int getKordX() {
-        return this.kordX;
-    }
-
-    public void setKordX(int kordX) {
-        this.kordX = kordX;
-    }
-
-    public int getKordY() {
-        return this.kordY;
-    }
-
-    public void setKordY(int kordY) {
-        this.kordY = kordY;
-    }
-
     public ArrayList<Ammus> getAmmukset() {
         return ammukset;
     }

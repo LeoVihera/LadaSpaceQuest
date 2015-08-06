@@ -77,4 +77,21 @@ public class LadaTest {
         assertEquals(2, hahmo.getSuunta());
     }
 
+    @Test
+    public void ampuminentoimii() {
+        Lada hahmo = new Lada();
+        for (int i = 0; i < 10; i++) {
+            hahmo.ammu();
+        }
+        assertEquals(10, hahmo.getAmmukset().size());
+    }
+    
+    @Test
+    public void ammusLuodaanOikeaanPaikkaan(){
+        Lada hahmo = new Lada();
+        hahmo.ammu();
+        assertEquals(hahmo.getKordX(), hahmo.getAmmukset().get(0).getKordX() - 30);
+        assertEquals(hahmo.getKordY(), hahmo.getAmmukset().get(0).getKordY());
+    }
+
 }

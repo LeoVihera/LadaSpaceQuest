@@ -1,4 +1,4 @@
-package ladaspacequest.ladaspacequest;
+package ladaspacequest;
 
 import kuviot.Lada;
 import java.awt.Color;

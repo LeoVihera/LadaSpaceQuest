@@ -1,4 +1,4 @@
-package ladaspacequest.ladaspacequest;
+package ladaspacequest;
 
 import java.awt.Container;
 import java.awt.Dimension;
