@@ -3,6 +3,7 @@ package kuviot;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.List;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Lada extends Kuvio {
@@ -62,5 +63,7 @@ public class Lada extends Kuvio {
         this.ammukset = ammukset;
     }
 
-
+    public Rectangle getRajat(){
+        return new Rectangle(this.kordX, this.kordY - 10, 50, 40);
+    }
 }

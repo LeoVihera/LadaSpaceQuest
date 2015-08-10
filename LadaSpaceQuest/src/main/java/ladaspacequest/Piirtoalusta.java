@@ -16,11 +16,10 @@ import kuviot.Seina;
 public class Piirtoalusta extends JPanel implements ActionListener {
 
     private final Lada hahmo;
-    private ArrayList<Seina> seinat;
+    private final ArrayList<Seina> seinat;
     Timer uudelleenPiirto = new Timer(50, this);
-    Timer uusiSeina = new Timer(1000, this);
+    Timer uusiSeina = new Timer(1500, this);
     Random arpoja = new Random();
-
 
     public Piirtoalusta(Lada hahmo) {
         super.setBackground(Color.WHITE);
@@ -45,6 +44,8 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == uudelleenPiirto) {
+            tarkastaEttaHahmoElaa();
+            tarkastaAmmustenolemassaOlo();
             siirraKaikkea();
         }
         if (ev.getSource() == uusiSeina) {
@@ -62,6 +63,27 @@ public class Piirtoalusta extends JPanel implements ActionListener {
             seina.siirry();
         }
 
+    }
+
+    public void tarkastaEttaHahmoElaa() {
+        if (hahmo.getKordY() > 700) {
+            uudelleenPiirto.stop();
+        }
+        for (Seina seina : this.seinat) {
+            if (hahmo.getRajat().intersects(seina.getRajat())) {
+                uudelleenPiirto.stop();
+            }
+        }
+    }
+
+    public void tarkastaAmmustenolemassaOlo() {
+        for (Seina seina : this.seinat) {
+            for (Ammus ammus : hahmo.getAmmukset()) {
+                if (ammus.getRajat().intersects(seina.getRajat())) {
+                    hahmo.getAmmukset().remove(ammus);
+                }
+            }
+        }
     }
 
 }
