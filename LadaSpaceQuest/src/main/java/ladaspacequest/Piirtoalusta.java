@@ -44,7 +44,7 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == uudelleenPiirto) {
-            tarkastaEttaHahmoElaa();
+         //   tarkastaEttaHahmoElaa();
             tarkastaAmmustenolemassaOlo();
             siirraKaikkea();
         }
@@ -77,13 +77,15 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     }
 
     public void tarkastaAmmustenolemassaOlo() {
+        ArrayList poistettavat = new ArrayList<Ammus>();
         for (Seina seina : this.seinat) {
             for (Ammus ammus : hahmo.getAmmukset()) {
                 if (ammus.getRajat().intersects(seina.getRajat())) {
-                    hahmo.getAmmukset().remove(ammus);
+                    poistettavat.add(ammus);
                 }
             }
         }
+        hahmo.getAmmukset().removeAll(poistettavat);
     }
 
 }
