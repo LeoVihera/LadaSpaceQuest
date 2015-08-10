@@ -23,12 +23,12 @@ public class Lada extends Kuvio {
             this.kordY = 0;
         } else {
             this.kordY = this.kordY + suunta;
-            this.suunta = this.suunta + 1;
+            this.suunta = this.suunta + 2;
         }
     }
 
     public void hyppy() {
-        this.suunta = -15;
+        this.suunta = -25;
     }
 
     public void ammu() {

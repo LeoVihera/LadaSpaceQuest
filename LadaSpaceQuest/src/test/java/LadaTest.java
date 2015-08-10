@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 
 import kuviot.Lada;
 import org.junit.After;
@@ -58,7 +55,7 @@ public class LadaTest {
     public void hyppyMuuttaaSuunnan() {
         Lada hahmo = new Lada();
         hahmo.hyppy();
-        assertEquals(-15, hahmo.getSuunta());
+        assertEquals(-25, hahmo.getSuunta());
     }
 
     @Test
@@ -74,7 +71,7 @@ public class LadaTest {
     public void suuntaKasvaaSiirryttaessa() {
         Lada hahmo = new Lada();
         hahmo.siirry();
-        assertEquals(2, hahmo.getSuunta());
+        assertEquals(3, hahmo.getSuunta());
     }
 
     @Test
