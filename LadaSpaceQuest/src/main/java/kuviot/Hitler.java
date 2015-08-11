@@ -29,11 +29,6 @@ public class Hitler extends Este {
         this.kordX = this.kordX - 15;
     }
 
-    public void piirra(Graphics graphics, int tila) {
-        if (this.kordY == 0) {
-            graphics.drawImage(this.kuva, this.kordX, this.kordY, null);
-        }
-    }
 
     @Override
     public void piirra(Graphics graphics) {

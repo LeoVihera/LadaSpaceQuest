@@ -1,6 +1,7 @@
+package kuviot;
 
 
-
+import java.awt.Rectangle;
 import kuviot.Lada;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -83,12 +84,24 @@ public class LadaTest {
         assertEquals(10, hahmo.getAmmukset().size());
     }
     
+    
     @Test
-    public void ammusLuodaanOikeaanPaikkaan(){
+    public void ladaEiMeneRuudustaYli(){
         Lada hahmo = new Lada();
-        hahmo.ammu();
-        assertEquals(hahmo.getKordX(), hahmo.getAmmukset().get(0).getKordX() - 30);
-        assertEquals(hahmo.getKordY(), hahmo.getAmmukset().get(0).getKordY());
+        hahmo.setKordY(25);
+        hahmo.hyppy();
+        hahmo.siirry();
+        assertEquals(hahmo.getKordY(), 0);
+        assertEquals(hahmo.getSuunta(), 1);
     }
+    
+    @Test
+    public void rajatOvatOikein(){
+        Lada hahmo = new Lada();
+        hahmo.hyppy();
+        hahmo.siirry();
+        assertEquals(hahmo.getRajat(), new Rectangle(100, 315, 50, 35));
+    }
+    
 
 }

@@ -1,4 +1,4 @@
-package ladaspacequest;
+package logiikka;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;

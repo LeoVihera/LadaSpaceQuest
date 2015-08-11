@@ -1,13 +1,9 @@
 package ladaspacequest;
 
 import javax.swing.SwingUtilities;
-import kuviot.Lada;
 
-/**
- * Hello world!
- *
- */
-public class App {
+
+public class Main {
 
     public static void main(String[] args) {
         Kayttoliittyma kayttoliittyma = new Kayttoliittyma();

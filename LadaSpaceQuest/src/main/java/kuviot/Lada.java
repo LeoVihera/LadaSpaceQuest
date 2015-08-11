@@ -59,9 +59,6 @@ public class Lada extends Kuvio {
         return ammukset;
     }
 
-    public void setAmmukset(ArrayList<Ammus> ammukset) {
-        this.ammukset = ammukset;
-    }
 
     @Override
     public Rectangle getRajat(){

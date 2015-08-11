@@ -1,4 +1,4 @@
-package ladaspacequest;
+package logiikka;
 
 import kuviot.Lada;
 import java.awt.Color;
@@ -20,19 +20,17 @@ import javax.swing.Timer;
 import kuviot.Ammus;
 import kuviot.Este;
 import kuviot.Hitler;
-import kuviot.Seina;
 
 public class Piirtoalusta extends JPanel implements ActionListener {
 
-    private final Lada hahmo;
+    private final Lada hahmo = new Lada();
     private final ArrayList<Este> esteet;
     Timer uudelleenPiirto = new Timer(50, this);
-    Timer uusiSeina = new Timer(1500, this);
+    Timer uusiSeina = new Timer(1000, this);
     Random arpoja = new Random();
 
-    public Piirtoalusta(Lada hahmo) {
+    public Piirtoalusta() {
         super.setBackground(Color.WHITE);
-        this.hahmo = hahmo;
         this.esteet = new ArrayList<>();
         uudelleenPiirto.start();
         uusiSeina.start();
@@ -59,8 +57,6 @@ public class Piirtoalusta extends JPanel implements ActionListener {
             siirraKaikkea();
         }
         if (ev.getSource() == uusiSeina) {
-       //     this.esteet.add(new Seina(arpoja.nextInt(4)));
-            this.esteet.add(new Hitler(arpoja.nextInt(10)));
             this.esteet.add(new Hitler(arpoja.nextInt(10)));
         }
         repaint();
@@ -71,8 +67,8 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         for (Ammus ammus : hahmo.getAmmukset()) {
             ammus.siirry();
         }
-        for (Este seina : this.esteet) {
-            seina.siirry();
+        for (Este este : this.esteet) {
+            este.siirry();
         }
 
     }
@@ -110,4 +106,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
             System.out.println(uae);
         }
     }
+
+    public Lada getHahmo() {
+        return hahmo;
+    }
+    
 }

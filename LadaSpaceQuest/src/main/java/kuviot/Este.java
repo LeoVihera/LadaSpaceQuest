@@ -10,8 +10,5 @@ public abstract class Este extends Kuvio {
         super(x, y);
     }
 
-    @Override
-    public void siirry() {
-        this.kordX = this.kordX - 15;
-    }
+   
 }
