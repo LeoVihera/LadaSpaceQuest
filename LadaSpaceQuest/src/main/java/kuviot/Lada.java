@@ -40,7 +40,7 @@ public class Lada extends Kuvio {
     public void piirra(Graphics graphics) {
         graphics.setColor(Color.RED);
         graphics.fillRect(kordX, kordY, 50, 20);
-        graphics.fillRect(kordX + 10, kordY - 10, 30, 20);
+        graphics.fillRect(kordX + 10, kordY - 10, 30, 10);
         graphics.setColor(Color.DARK_GRAY);
         graphics.fillOval(kordX + 4, kordY + 10, 17, 17);
         graphics.fillOval(kordX + 28, kordY + 10, 17, 17);
@@ -63,7 +63,8 @@ public class Lada extends Kuvio {
         this.ammukset = ammukset;
     }
 
+    @Override
     public Rectangle getRajat(){
-        return new Rectangle(this.kordX, this.kordY - 10, 50, 40);
+        return new Rectangle(this.kordX, this.kordY - 10, 50, 35);
     }
 }

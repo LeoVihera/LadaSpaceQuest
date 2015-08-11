@@ -7,3 +7,7 @@
 **05.08.15** 3t, toimintojen ja testien lisääminen.
 
 **06.08.15** 1t, pit-raportti, luokkakaavio.
+
+**10.08.15** 1t, seinä-luokka luotu ja pientä säätöä.
+
+**11.08.15** 2t, kuvioiden yhteentörmäämisen määrittelyä.

@@ -6,17 +6,26 @@ import java.awt.Graphics;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import kuviot.Ammus;
+import kuviot.Este;
+import kuviot.Hitler;
 import kuviot.Seina;
 
 public class Piirtoalusta extends JPanel implements ActionListener {
 
     private final Lada hahmo;
-    private final ArrayList<Seina> seinat;
+    private final ArrayList<Este> esteet;
     Timer uudelleenPiirto = new Timer(50, this);
     Timer uusiSeina = new Timer(1500, this);
     Random arpoja = new Random();
@@ -24,9 +33,10 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     public Piirtoalusta(Lada hahmo) {
         super.setBackground(Color.WHITE);
         this.hahmo = hahmo;
-        this.seinat = new ArrayList<>();
+        this.esteet = new ArrayList<>();
         uudelleenPiirto.start();
         uusiSeina.start();
+        aloitaMusiikki();
     }
 
     @Override
@@ -36,20 +46,22 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         for (Ammus ammus : hahmo.getAmmukset()) {
             ammus.piirra(graphics);
         }
-        for (Seina seina : this.seinat) {
-            seina.piirra(graphics);
+        for (Este este : this.esteet) {
+            este.piirra(graphics);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == uudelleenPiirto) {
-         //   tarkastaEttaHahmoElaa();
+            tarkastaEttaHahmoElaa();
             tarkastaAmmustenolemassaOlo();
             siirraKaikkea();
         }
         if (ev.getSource() == uusiSeina) {
-            this.seinat.add(new Seina(arpoja.nextInt(4)));
+       //     this.esteet.add(new Seina(arpoja.nextInt(4)));
+            this.esteet.add(new Hitler(arpoja.nextInt(10)));
+            this.esteet.add(new Hitler(arpoja.nextInt(10)));
         }
         repaint();
     }
@@ -59,7 +71,7 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         for (Ammus ammus : hahmo.getAmmukset()) {
             ammus.siirry();
         }
-        for (Seina seina : this.seinat) {
+        for (Este seina : this.esteet) {
             seina.siirry();
         }
 
@@ -69,8 +81,8 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         if (hahmo.getKordY() > 700) {
             uudelleenPiirto.stop();
         }
-        for (Seina seina : this.seinat) {
-            if (hahmo.getRajat().intersects(seina.getRajat())) {
+        for (Este este : this.esteet) {
+            if (hahmo.getRajat().intersects(este.getRajat())) {
                 uudelleenPiirto.stop();
             }
         }
@@ -78,9 +90,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     public void tarkastaAmmustenolemassaOlo() {
         ArrayList poistettavat = new ArrayList<Ammus>();
-        for (Seina seina : this.seinat) {
+        for (Este este : this.esteet) {
             for (Ammus ammus : hahmo.getAmmukset()) {
-                if (ammus.getRajat().intersects(seina.getRajat())) {
+                if (ammus.getRajat().intersects(este.getRajat())) {
                     poistettavat.add(ammus);
                 }
             }
@@ -88,4 +100,14 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         hahmo.getAmmukset().removeAll(poistettavat);
     }
 
+    public void aloitaMusiikki() {
+        try {
+            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("musiikki.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audio);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException uae) {
+            System.out.println(uae);
+        }
+    }
 }

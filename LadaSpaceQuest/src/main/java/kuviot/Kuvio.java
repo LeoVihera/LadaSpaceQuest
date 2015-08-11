@@ -4,6 +4,7 @@ package kuviot;
 
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public abstract class Kuvio {
 
@@ -31,10 +32,9 @@ public abstract class Kuvio {
         this.kordY = kordY;
     }
 
-    public void siirry() {
-    }
+    public abstract void siirry();
     
-    public void piirra(Graphics graphics){
-        
-    }
+    public abstract void piirra(Graphics graphics);
+    
+    public abstract Rectangle getRajat();
 }
