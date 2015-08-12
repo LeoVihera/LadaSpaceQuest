@@ -20,20 +20,21 @@ import javax.swing.Timer;
 import kuviot.Ammus;
 import kuviot.Este;
 import kuviot.Hitler;
+import kuviot.Kuvio;
 
 public class Piirtoalusta extends JPanel implements ActionListener {
 
     private final Lada hahmo = new Lada();
     private final ArrayList<Este> esteet;
     Timer uudelleenPiirto = new Timer(50, this);
-    Timer uusiSeina = new Timer(1000, this);
+    Timer uusiEste = new Timer(1000, this);
     Random arpoja = new Random();
 
     public Piirtoalusta() {
         super.setBackground(Color.WHITE);
         this.esteet = new ArrayList<>();
         uudelleenPiirto.start();
-        uusiSeina.start();
+        uusiEste.start();
         aloitaMusiikki();
     }
 
@@ -52,11 +53,12 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == uudelleenPiirto) {
-            tarkastaEttaHahmoElaa();
-            tarkastaAmmustenolemassaOlo();
-            siirraKaikkea();
+            if (tarkastaEttaHahmoElaa()) {
+                tarkastaAmmustenolemassaOlo();
+                siirraKaikkea();
+            }
         }
-        if (ev.getSource() == uusiSeina) {
+        if (ev.getSource() == uusiEste) {
             this.esteet.add(new Hitler(arpoja.nextInt(10)));
         }
         repaint();
@@ -73,15 +75,18 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     }
 
-    public void tarkastaEttaHahmoElaa() {
+    public boolean tarkastaEttaHahmoElaa() {
         if (hahmo.getKordY() > 700) {
             uudelleenPiirto.stop();
+            return false;
         }
         for (Este este : this.esteet) {
             if (hahmo.getRajat().intersects(este.getRajat())) {
                 uudelleenPiirto.stop();
+                return false;
             }
         }
+        return true;
     }
 
     public void tarkastaAmmustenolemassaOlo() {
@@ -110,5 +115,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     public Lada getHahmo() {
         return hahmo;
     }
-    
+
+    public ArrayList<Este> getEsteet() {
+        return esteet;
+    }
+
 }

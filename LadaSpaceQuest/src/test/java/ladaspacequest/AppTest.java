@@ -1,4 +1,4 @@
-package ladaspacequest.ladaspacequest;
+package ladaspacequest;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

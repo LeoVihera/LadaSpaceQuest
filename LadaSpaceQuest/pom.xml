@@ -40,9 +40,11 @@
                 <configuration>
                     <targetClasses>
                         <param>kuviot.*</param>
+                        <param>logiikka.Piirtoalusta</param>
                     </targetClasses>
                     <targetTests>
                         <param>kuviot.*</param>
+                        <param>logiikka.*</param>
                     </targetTests>
                 </configuration>
             </plugin>
