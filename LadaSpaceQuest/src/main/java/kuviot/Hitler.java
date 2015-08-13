@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 public class Hitler extends Este {
 
     private final BufferedImage kuva;
+    private int kestavyys;
 
     public Hitler(int sijainti) {
         super(1000, 70 * sijainti);
@@ -22,6 +23,7 @@ public class Hitler extends Este {
         } catch (IOException e) {
         }
         this.kuva = img;
+        this.kestavyys = 5;
     }
 
     @Override
@@ -39,5 +41,17 @@ public class Hitler extends Este {
     public Rectangle getRajat() {
         return new Rectangle(this.kordX, this.kordY, 65, 100);
     }
+    
+   
+    @Override
+    public void menetaKestavyys(){
+        this.kestavyys--;
+    }
+
+    @Override
+    public int getKestavyys() {
+        return kestavyys;
+    }
+    
 
 }

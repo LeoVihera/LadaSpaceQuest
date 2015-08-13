@@ -2,6 +2,7 @@ package logiikka;
 
 import kuviot.Lada;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.List;
 import java.awt.event.ActionEvent;
@@ -42,6 +43,8 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         hahmo.piirra(graphics);
+        graphics.setFont(new Font("Impact", Font.PLAIN, 24)); 
+        graphics.drawString(Integer.toString(hahmo.getPisteet()), 920, 50);
         for (Ammus ammus : hahmo.getAmmukset()) {
             ammus.piirra(graphics);
         }
@@ -54,12 +57,13 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == uudelleenPiirto) {
             if (tarkastaEttaHahmoElaa()) {
+                tarkastaAmmuksenOsuminenEsteisiin();
                 tarkastaAmmustenolemassaOlo();
                 siirraKaikkea();
             }
         }
         if (ev.getSource() == uusiEste) {
-            this.esteet.add(new Hitler(arpoja.nextInt(10)));
+            this.esteet.add(new Hitler(arpoja.nextInt(9)));
         }
         repaint();
     }
@@ -99,6 +103,23 @@ public class Piirtoalusta extends JPanel implements ActionListener {
             }
         }
         hahmo.getAmmukset().removeAll(poistettavat);
+    }
+
+    public void tarkastaAmmuksenOsuminenEsteisiin() {
+        ArrayList poistettavat = new ArrayList<Este>();
+        for (Este este : this.esteet) {
+            for (Ammus ammus : hahmo.getAmmukset()) {
+                if (ammus.getRajat().intersects(este.getRajat())) {
+                    este.menetaKestavyys();
+                    if (este.getKestavyys() == 0) {
+                        poistettavat.add(este);
+                        hahmo.saaPiste();
+                    }
+                }
+
+            }
+        }
+        this.esteet.removeAll(poistettavat);
     }
 
     public void aloitaMusiikki() {

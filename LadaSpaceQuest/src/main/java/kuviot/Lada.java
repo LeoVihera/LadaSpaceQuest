@@ -9,12 +9,14 @@ import java.util.ArrayList;
 public class Lada extends Kuvio {
 
     private int suunta;
+    private int pisteet;
     private ArrayList<Ammus> ammukset;
 
     public Lada() {
         super(100, 350);
         this.suunta = 1;
         this.ammukset = new ArrayList<Ammus>();
+        this.pisteet = 0;
     }
 
     @Override
@@ -63,5 +65,13 @@ public class Lada extends Kuvio {
     @Override
     public Rectangle getRajat(){
         return new Rectangle(this.kordX, this.kordY - 10, 50, 35);
+    }
+    
+    public void saaPiste(){
+        this.pisteet++;
+    }
+    
+    public int getPisteet(){
+        return this.pisteet;
     }
 }

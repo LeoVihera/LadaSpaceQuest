@@ -9,6 +9,8 @@ public abstract class Este extends Kuvio {
     public Este(int x, int y) {
         super(x, y);
     }
+    
+    public abstract void menetaKestavyys();
 
-   
+   public abstract int getKestavyys();
 }
