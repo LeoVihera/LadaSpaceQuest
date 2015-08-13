@@ -13,3 +13,5 @@
 **11.08.15** 2t, kuvioiden yhteentörmäämisen määrittelyä.
 
 **12.08.15** 3t, testejä lisätty ja pittiä säädetty.
+
+**13.08.15** 2t, esteiden tuhoaminen ja pisteidenlasku, päivitetty luokkakaavio.
