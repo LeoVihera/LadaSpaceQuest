@@ -17,6 +17,15 @@ public class NappaimistonKuuntelija implements KeyListener {
         this.component = component;
     }
 
+    /**
+     * Kutsuu hahmon suuntaavaihtavaa metodia, kun painetaan a, ja ampumismetodia, kun painetaan s
+     * 
+     * @param e Painettu näppäin
+     * 
+     * @see kuviot.Lada#hyppy() 
+     * @see kuviot.Lada#ammu() 
+     * 
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_A) {

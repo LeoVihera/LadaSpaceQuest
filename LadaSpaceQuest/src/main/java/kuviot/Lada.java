@@ -6,6 +6,10 @@ import java.awt.List;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+/**
+ * Luokka joka sisältää pelihahmon metodit
+ * @author Leo
+ */
 public class Lada extends Kuvio {
 
     private int suunta;
@@ -19,6 +23,9 @@ public class Lada extends Kuvio {
         this.pisteet = 0;
     }
 
+    /**
+     * Metodi, joka siirtää hahmoa, ja samalla kiihdttää sitä
+     */
     @Override
     public void siirry() {
         if (this.kordY <= -this.suunta) {
@@ -30,14 +37,25 @@ public class Lada extends Kuvio {
         }
     }
 
+    /**
+     * Metodi, joka vaihtaa ladan suuntaa
+     */
     public void hyppy() {
         this.suunta = -25;
     }
 
+    /**
+     * Metodi, joka lisää ladan ammusluotteloon ja siten myös peliin uuden ammuksen
+     */
     public void ammu() {
         this.ammukset.add(new Ammus(this.kordX + 30, this.kordY));
     }
 
+    /**
+     * Metodi, joka piirtää hahmon
+     * 
+     * @param graphics 
+     */
     @Override
     public void piirra(Graphics graphics) {
         graphics.setColor(Color.RED);
@@ -62,11 +80,19 @@ public class Lada extends Kuvio {
     }
 
 
+    /**
+     * Antaa rajat, joista lasketaan yyhteentörmäykset
+     * 
+     * @return Ladan rajat
+     */
     @Override
     public Rectangle getRajat(){
         return new Rectangle(this.kordX, this.kordY - 10, 50, 35);
     }
     
+    /**
+     * Lisää ladan pistesaldoa
+     */
     public void saaPiste(){
         this.pisteet++;
     }

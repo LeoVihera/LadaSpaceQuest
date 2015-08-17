@@ -39,6 +39,11 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         aloitaMusiikki();
     }
 
+    /**
+     * Piirtää hahmon, viholliset, ammukset ja pisteet
+     * 
+     * @param graphics 
+     */
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -53,21 +58,31 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Siirtää kuvioita ajastimen mukaan, ja luo uusia vihollisia toisen ajastimen mukaan
+     * 
+     * @param aika ajastin
+     */
     @Override
-    public void actionPerformed(ActionEvent ev) {
-        if (ev.getSource() == uudelleenPiirto) {
+    public void actionPerformed(ActionEvent aika) {
+        if (aika.getSource() == uudelleenPiirto) {
             if (tarkastaEttaHahmoElaa()) {
                 tarkastaAmmuksenOsuminenEsteisiin();
                 tarkastaAmmustenolemassaOlo();
                 siirraKaikkea();
             }
         }
-        if (ev.getSource() == uusiEste) {
+        if (aika.getSource() == uusiEste) {
             this.esteet.add(new Hitler(arpoja.nextInt(9)));
         }
         repaint();
     }
 
+    /**
+     * Kutsuu kuvioiden siirtymismetodeita
+     * 
+     * @see kuviot.Kuvio#siirry() 
+     */
     public void siirraKaikkea() {
         hahmo.siirry();
         for (Ammus ammus : hahmo.getAmmukset()) {
@@ -79,6 +94,11 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Tarkastaa, että hahmo ei ole törmännyt ja että on vielä ruudulla
+     * 
+     * @return boolean elääkö hahmo
+     */
     public boolean tarkastaEttaHahmoElaa() {
         if (hahmo.getKordY() > 700) {
             uudelleenPiirto.stop();
@@ -93,6 +113,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         return true;
     }
 
+    /**
+     * Tarkastaa onko ammukset törmänneet mihinkään, ja poistaa törmänneet ammukset
+     */
     public void tarkastaAmmustenolemassaOlo() {
         ArrayList poistettavat = new ArrayList<Ammus>();
         for (Este este : this.esteet) {
@@ -105,6 +128,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         hahmo.getAmmukset().removeAll(poistettavat);
     }
 
+    /**
+     * Tarkastaa ammusten osumisen esteisiin, vähentää niiden kestävyyttä ja poistaa ne, jos kestävyys on nolla
+     */
     public void tarkastaAmmuksenOsuminenEsteisiin() {
         ArrayList poistettavat = new ArrayList<Este>();
         for (Este este : this.esteet) {
@@ -122,6 +148,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         this.esteet.removeAll(poistettavat);
     }
 
+    /**
+     * Käynnistää musiikin
+     */
     public void aloitaMusiikki() {
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(new File("musiikki.wav"));
