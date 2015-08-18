@@ -15,3 +15,7 @@
 **12.08.15** 3t, testejä lisätty ja pittiä säädetty.
 
 **13.08.15** 2t, esteiden tuhoaminen ja pisteidenlasku, päivitetty luokkakaavio.
+
+**17.08.15** 2t, javadocceja kirjoitettu ja pieniä muokkauksia.
+
+**18.08.15** 4t, graafisen käyttiksen tekoa ja muuta säätöä.

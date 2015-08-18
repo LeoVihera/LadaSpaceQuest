@@ -4,24 +4,15 @@ import kuviot.Lada;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import kuviot.Ammus;
 import kuviot.Este;
 import kuviot.Hitler;
-import kuviot.Kuvio;
 
 public class Piirtoalusta extends JPanel implements ActionListener {
 
@@ -33,22 +24,22 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     public Piirtoalusta() {
         super.setBackground(Color.WHITE);
+        boolean musiikki = false;
         this.esteet = new ArrayList<>();
         uudelleenPiirto.start();
         uusiEste.start();
-        aloitaMusiikki();
     }
 
     /**
      * Piirtää hahmon, viholliset, ammukset ja pisteet
-     * 
-     * @param graphics 
+     *
+     * @param graphics
      */
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         hahmo.piirra(graphics);
-        graphics.setFont(new Font("Impact", Font.PLAIN, 24)); 
+        graphics.setFont(new Font("Impact", Font.PLAIN, 24));
         graphics.drawString(Integer.toString(hahmo.getPisteet()), 920, 50);
         for (Ammus ammus : hahmo.getAmmukset()) {
             ammus.piirra(graphics);
@@ -59,8 +50,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     }
 
     /**
-     * Siirtää kuvioita ajastimen mukaan, ja luo uusia vihollisia toisen ajastimen mukaan
-     * 
+     * Siirtää kuvioita ajastimen mukaan, ja luo uusia vihollisia toisen
+     * ajastimen mukaan
+     *
      * @param aika ajastin
      */
     @Override
@@ -80,8 +72,8 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     /**
      * Kutsuu kuvioiden siirtymismetodeita
-     * 
-     * @see kuviot.Kuvio#siirry() 
+     *
+     * @see kuviot.Kuvio#siirry()
      */
     public void siirraKaikkea() {
         hahmo.siirry();
@@ -96,25 +88,35 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     /**
      * Tarkastaa, että hahmo ei ole törmännyt ja että on vielä ruudulla
-     * 
+     *
      * @return boolean elääkö hahmo
      */
     public boolean tarkastaEttaHahmoElaa() {
-        if (hahmo.getKordY() > 700) {
-            uudelleenPiirto.stop();
-            return false;
+        if (hahmo.getKordY() > 700 || hahmo.getKordY() < -50) {
+            return peliPaattyi();
         }
         for (Este este : this.esteet) {
             if (hahmo.getRajat().intersects(este.getRajat())) {
-                uudelleenPiirto.stop();
-                return false;
+                return peliPaattyi();
             }
         }
         return true;
     }
 
     /**
-     * Tarkastaa onko ammukset törmänneet mihinkään, ja poistaa törmänneet ammukset
+     * Suorittaa hahmon kuoleman jälkeiset toimenpiteet
+     * 
+     * @return boolean false
+     */
+    public boolean peliPaattyi() {
+        uudelleenPiirto.stop();
+        hahmo.setHengissa(false);
+        return false;
+    }
+
+    /**
+     * Tarkastaa onko ammukset törmänneet mihinkään, ja poistaa törmänneet
+     * ammukset
      */
     public void tarkastaAmmustenolemassaOlo() {
         ArrayList poistettavat = new ArrayList<Ammus>();
@@ -129,7 +131,8 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     }
 
     /**
-     * Tarkastaa ammusten osumisen esteisiin, vähentää niiden kestävyyttä ja poistaa ne, jos kestävyys on nolla
+     * Tarkastaa ammusten osumisen esteisiin, vähentää niiden kestävyyttä ja
+     * poistaa ne, jos kestävyys on nolla
      */
     public void tarkastaAmmuksenOsuminenEsteisiin() {
         ArrayList poistettavat = new ArrayList<Este>();
@@ -140,6 +143,7 @@ public class Piirtoalusta extends JPanel implements ActionListener {
                     if (este.getKestavyys() == 0) {
                         poistettavat.add(este);
                         hahmo.saaPiste();
+                        lisaaVaikeutta();
                     }
                 }
 
@@ -149,16 +153,12 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     }
 
     /**
-     * Käynnistää musiikin
+     * Pienentää uusien esteiden väliaikaa, jos se ei ole jo liian pieni
      */
-    public void aloitaMusiikki() {
-        try {
-            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("musiikki.wav"));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audio);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException uae) {
-            System.out.println(uae);
+    public void lisaaVaikeutta() {
+        int aika = uusiEste.getDelay();
+        if (aika > 200) {
+            uusiEste.setDelay(aika - 20);
         }
     }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Luokka joka sisältää pelihahmon metodit
+ *
  * @author Leo
  */
 public class Lada extends Kuvio {
@@ -15,12 +16,14 @@ public class Lada extends Kuvio {
     private int suunta;
     private int pisteet;
     private ArrayList<Ammus> ammukset;
+    private boolean hengissa;
 
     public Lada() {
         super(100, 350);
         this.suunta = 1;
         this.ammukset = new ArrayList<Ammus>();
         this.pisteet = 0;
+        this.hengissa = true;
     }
 
     /**
@@ -28,13 +31,8 @@ public class Lada extends Kuvio {
      */
     @Override
     public void siirry() {
-        if (this.kordY <= -this.suunta) {
-            this.suunta = 1;
-            this.kordY = 0;
-        } else {
-            this.kordY = this.kordY + suunta;
-            this.suunta = this.suunta + 2;
-        }
+        this.kordY = this.kordY + suunta;
+        this.suunta = this.suunta + 2;
     }
 
     /**
@@ -45,7 +43,8 @@ public class Lada extends Kuvio {
     }
 
     /**
-     * Metodi, joka lisää ladan ammusluotteloon ja siten myös peliin uuden ammuksen
+     * Metodi, joka lisää ladan ammusluotteloon ja siten myös peliin uuden
+     * ammuksen
      */
     public void ammu() {
         this.ammukset.add(new Ammus(this.kordX + 30, this.kordY));
@@ -53,8 +52,8 @@ public class Lada extends Kuvio {
 
     /**
      * Metodi, joka piirtää hahmon
-     * 
-     * @param graphics 
+     *
+     * @param graphics
      */
     @Override
     public void piirra(Graphics graphics) {
@@ -79,25 +78,32 @@ public class Lada extends Kuvio {
         return ammukset;
     }
 
+    public boolean isHengissa() {
+        return hengissa;
+    }
+
+    public void setHengissa(boolean hengissa) {
+        this.hengissa = hengissa;
+    }
 
     /**
      * Antaa rajat, joista lasketaan yyhteentörmäykset
-     * 
+     *
      * @return Ladan rajat
      */
     @Override
-    public Rectangle getRajat(){
+    public Rectangle getRajat() {
         return new Rectangle(this.kordX, this.kordY - 10, 50, 35);
     }
-    
+
     /**
      * Lisää ladan pistesaldoa
      */
-    public void saaPiste(){
+    public void saaPiste() {
         this.pisteet++;
     }
-    
-    public int getPisteet(){
+
+    public int getPisteet() {
         return this.pisteet;
     }
 }

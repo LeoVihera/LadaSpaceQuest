@@ -32,9 +32,22 @@ public abstract class Kuvio {
         this.kordY = kordY;
     }
 
+    /**
+     * Siirtää kuviota
+     */
     public abstract void siirry();
     
+    /**
+     * Piirtää kuvion
+     * 
+     * @param graphics 
+     */
     public abstract void piirra(Graphics graphics);
     
+    /**
+     * Palauttaa kuvion rajat suorakulmiona yhteentörmäyksien tarkistamista varten
+     * 
+     * @return Rajat 
+     */
     public abstract Rectangle getRajat();
 }
