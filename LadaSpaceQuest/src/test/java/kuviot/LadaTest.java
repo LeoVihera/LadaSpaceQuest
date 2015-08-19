@@ -46,13 +46,6 @@ public class LadaTest {
         assertEquals(-25, hahmo.getSuunta());
     }
 
-    @Test
-    public void ladaEiMeneRuudunylapuolelle() {
-        hahmo.setKordY(0);
-        hahmo.setSuunta(-1);
-        hahmo.siirry();
-        assertEquals(0, hahmo.getKordY());
-    }
 
     @Test
     public void suuntaKasvaaSiirryttaessa() {
@@ -68,14 +61,6 @@ public class LadaTest {
         assertEquals(10, hahmo.getAmmukset().size());
     }
 
-    @Test
-    public void ladaEiMeneRuudustaYli() {
-        hahmo.setKordY(25);
-        hahmo.hyppy();
-        hahmo.siirry();
-        assertEquals(hahmo.getKordY(), 0);
-        assertEquals(hahmo.getSuunta(), 1);
-    }
 
     @Test
     public void rajatOvatOikein() {
@@ -83,5 +68,7 @@ public class LadaTest {
         hahmo.siirry();
         assertEquals(hahmo.getRajat(), new Rectangle(100, 315, 50, 35));
     }
+    
+    
 
 }

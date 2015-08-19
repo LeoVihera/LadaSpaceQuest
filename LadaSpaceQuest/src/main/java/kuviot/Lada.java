@@ -70,9 +70,6 @@ public class Lada extends Kuvio {
         return suunta;
     }
 
-    public void setSuunta(int suunta) {
-        this.suunta = suunta;
-    }
 
     public ArrayList<Ammus> getAmmukset() {
         return ammukset;

@@ -13,6 +13,8 @@ import javax.swing.Timer;
 import kuviot.Ammus;
 import kuviot.Este;
 import kuviot.Hitler;
+import kuviot.Kuvio;
+import ladaspacequest.GameOver;
 
 public class Piirtoalusta extends JPanel implements ActionListener {
 
@@ -21,6 +23,7 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     Timer uudelleenPiirto = new Timer(50, this);
     Timer uusiEste = new Timer(1000, this);
     Random arpoja = new Random();
+    GameOver loppu = new GameOver(0);
 
     public Piirtoalusta() {
         super.setBackground(Color.WHITE);
@@ -40,6 +43,7 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         super.paintComponent(graphics);
         hahmo.piirra(graphics);
         graphics.setFont(new Font("Impact", Font.PLAIN, 24));
+        graphics.setColor(Color.BLACK);
         graphics.drawString(Integer.toString(hahmo.getPisteet()), 920, 50);
         for (Ammus ammus : hahmo.getAmmukset()) {
             ammus.piirra(graphics);
@@ -47,6 +51,7 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         for (Este este : this.esteet) {
             este.piirra(graphics);
         }
+        loppu.piirra(graphics);
     }
 
     /**
@@ -105,12 +110,15 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     /**
      * Suorittaa hahmon kuoleman jälkeiset toimenpiteet
-     * 
+     *
      * @return boolean false
      */
     public boolean peliPaattyi() {
         uudelleenPiirto.stop();
         hahmo.setHengissa(false);
+        loppu.setPisteet(hahmo.getPisteet());
+        loppu.setNakyvyys(true);
+        repaint();
         return false;
     }
 
@@ -140,13 +148,13 @@ public class Piirtoalusta extends JPanel implements ActionListener {
             for (Ammus ammus : hahmo.getAmmukset()) {
                 if (ammus.getRajat().intersects(este.getRajat())) {
                     este.menetaKestavyys();
-                    if (este.getKestavyys() == 0) {
-                        poistettavat.add(este);
-                        hahmo.saaPiste();
-                        lisaaVaikeutta();
-                    }
                 }
 
+            }
+            if (este.getKestavyys() == 0) {
+                poistettavat.add(este);
+                hahmo.saaPiste();
+                lisaaVaikeutta();
             }
         }
         this.esteet.removeAll(poistettavat);

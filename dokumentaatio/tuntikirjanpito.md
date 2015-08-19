@@ -19,3 +19,5 @@
 **17.08.15** 2t, javadocceja kirjoitettu ja pieniä muokkauksia.
 
 **18.08.15** 4t, graafisen käyttiksen tekoa ja muuta säätöä.
+
+**19.08.15** 3t, graafinen käyttis loppuun, testejä päivitetty ja epämääräistä säätöä.

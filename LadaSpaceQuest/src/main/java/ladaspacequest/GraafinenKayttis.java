@@ -49,6 +49,9 @@ public class GraafinenKayttis extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jFrame1 = new javax.swing.JFrame();
         jButton5 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -153,19 +156,41 @@ public class GraafinenKayttis extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(java.awt.SystemColor.inactiveCaption);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("1920- luvulla Neuvostoliitossa tehtiin hurjia sotakaluston prototyyppejä.\nVuonna 1924 valmistuikin Lada-prototip, joka olisi mullistanut sodankäynnin.\nKuitenkin viisaudessaan Lenin päätti, ettei maailma ollut vielä valmis tälläiseen\nmullistukseen. Kuitenkin toinen ajatus pääsi hänen päähänsä ja hän päätti jättää \nmaan taakseen ja lähteä levittämään kommunismin ilosanomaa maapallon ulkopuolelle.\n\n\nVuoden vaihtuivat ja koitti 1930- luku, jolloin Lenin alkoi tuntea uutta uhkaa \nkotoaan päin. Hän tiesi, että ellei tekisi asialle jotakin, niin rakas kotimaa \nolisi väistämättä tuhon oma. Kuitenkin pahuus yllätti jopa Leninin, kun hän vihdoin \nsaapui päävyöhykkeelle. Asteroidit olivat ottaneet uuden hirvittävän muodon.\n\n\nSinun tehtäväsi on ohjata Leniniä, väistellen hirvityksiä, ja samalla tuhoten mahdollisimman\nsuuren osen pahuudesta, ennen väistämätöntä tuhoa. Kotimaa luottaa sinuun!");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel9.setFont(new java.awt.Font("Impact", 0, 36)); // NOI18N
+        jLabel9.setText("Tarina");
+
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
         jFrame1Layout.setHorizontalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
-                .addContainerGap(746, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addContainerGap(396, Short.MAX_VALUE)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(456, 456, 456))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(199, 199, 199))))
         );
         jFrame1Layout.setVerticalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
-                .addContainerGap(439, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
         );
@@ -323,5 +348,8 @@ public class GraafinenKayttis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
