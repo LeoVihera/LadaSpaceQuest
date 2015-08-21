@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="13.029" errors="0" skipped="0" tests="15" name="logiikka.PiirtoalustaTest">
+<testsuite failures="0" time="13.065" errors="0" skipped="0" tests="15" name="logiikka.PiirtoalustaTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_45\jre\bin"/>
@@ -61,19 +61,19 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="1.086" classname="logiikka.PiirtoalustaTest" name="peliPysahtyyKunLadaTormaa"/>
-  <testcase time="0.004" classname="logiikka.PiirtoalustaTest" name="kunVihollisenVihollinenKuoleePisteetLisaantyvat"/>
-  <testcase time="0.001" classname="logiikka.PiirtoalustaTest" name="lisaaVaikeuttaPienentaaAjastinta"/>
-  <testcase time="1.001" classname="logiikka.PiirtoalustaTest" name="peliPysahtyyLadanMennessaLiikaaRuudunYlle"/>
-  <testcase time="0.308" classname="logiikka.PiirtoalustaTest" name="ammusTuhoutuuOsuessaanEsteeseen"/>
-  <testcase time="2.999" classname="logiikka.PiirtoalustaTest" name="SeinienLuominenToimii"/>
+  <testcase time="1.119" classname="logiikka.PiirtoalustaTest" name="peliPysahtyyKunLadaTormaa"/>
+  <testcase time="0" classname="logiikka.PiirtoalustaTest" name="kunVihollisenVihollinenKuoleePisteetLisaantyvat"/>
+  <testcase time="0" classname="logiikka.PiirtoalustaTest" name="lisaaVaikeuttaPienentaaAjastinta"/>
+  <testcase time="1.003" classname="logiikka.PiirtoalustaTest" name="peliPysahtyyLadanMennessaLiikaaRuudunYlle"/>
+  <testcase time="0.303" classname="logiikka.PiirtoalustaTest" name="ammusTuhoutuuOsuessaanEsteeseen"/>
+  <testcase time="3.001" classname="logiikka.PiirtoalustaTest" name="SeinienLuominenToimii"/>
   <testcase time="0.01" classname="logiikka.PiirtoalustaTest" name="kunVihollisenVihollinenKuoleeVaikeusMuuttuu"/>
   <testcase time="0" classname="logiikka.PiirtoalustaTest" name="esteidenValiaikaEiMeneLiianPieneksi"/>
   <testcase time="3.001" classname="logiikka.PiirtoalustaTest" name="kunPeliPaattyyLoppuTekstiMuuttuuNakyvaksi"/>
-  <testcase time="1.005" classname="logiikka.PiirtoalustaTest" name="peliPysahtyyLadanMennessaRuudunAlle"/>
+  <testcase time="1" classname="logiikka.PiirtoalustaTest" name="peliPysahtyyLadanMennessaRuudunAlle"/>
   <testcase time="0.201" classname="logiikka.PiirtoalustaTest" name="esteLiikkuu"/>
-  <testcase time="0.003" classname="logiikka.PiirtoalustaTest" name="kunVihollisenKestavysNollaVihollinenKuolee"/>
-  <testcase time="3.001" classname="logiikka.PiirtoalustaTest" name="ladaEioleHengissaKunMeneeRuudunAlapuolelle"/>
-  <testcase time="0.201" classname="logiikka.PiirtoalustaTest" name="ammusLiikkuu"/>
+  <testcase time="0.005" classname="logiikka.PiirtoalustaTest" name="kunVihollisenKestavysNollaVihollinenKuolee"/>
+  <testcase time="3.005" classname="logiikka.PiirtoalustaTest" name="ladaEioleHengissaKunMeneeRuudunAlapuolelle"/>
+  <testcase time="0.2" classname="logiikka.PiirtoalustaTest" name="ammusLiikkuu"/>
   <testcase time="0.2" classname="logiikka.PiirtoalustaTest" name="UudelleenPiirtoToimii"/>
 </testsuite>

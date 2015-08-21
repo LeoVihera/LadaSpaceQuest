@@ -6,6 +6,10 @@ package kuviot;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * Piirrettävä kuvio, jolla on rajat ja liikkumismetodi
+ * @author Leo
+ */
 public abstract class Kuvio {
 
     protected int kordX;

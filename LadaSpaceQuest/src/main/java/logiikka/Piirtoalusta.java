@@ -16,17 +16,23 @@ import kuviot.Hitler;
 import kuviot.Kuvio;
 import ladaspacequest.GameOver;
 
+/**
+ * 
+ * @author Leo
+ */
 public class Piirtoalusta extends JPanel implements ActionListener {
 
+    
     private final Lada hahmo = new Lada();
     private final ArrayList<Este> esteet;
     Timer uudelleenPiirto = new Timer(50, this);
     Timer uusiEste = new Timer(1000, this);
     Random arpoja = new Random();
-    GameOver loppu = new GameOver(0);
+    GameOver loppu = new GameOver();
 
+    
     public Piirtoalusta() {
-        super.setBackground(Color.WHITE);
+        super.setBackground(new Color(150, 150, 230));
         boolean musiikki = false;
         this.esteet = new ArrayList<>();
         uudelleenPiirto.start();
@@ -42,15 +48,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         hahmo.piirra(graphics);
-        graphics.setFont(new Font("Impact", Font.PLAIN, 24));
-        graphics.setColor(Color.BLACK);
-        graphics.drawString(Integer.toString(hahmo.getPisteet()), 920, 50);
-        for (Ammus ammus : hahmo.getAmmukset()) {
-            ammus.piirra(graphics);
-        }
-        for (Este este : this.esteet) {
-            este.piirra(graphics);
-        }
+        piirraPisteet(graphics);
+        piirraAmmukset(graphics);
+        piirraEsteet(graphics);
         loppu.piirra(graphics);
     }
 
@@ -63,16 +63,24 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent aika) {
         if (aika.getSource() == uudelleenPiirto) {
-            if (tarkastaEttaHahmoElaa()) {
-                tarkastaAmmuksenOsuminenEsteisiin();
-                tarkastaAmmustenolemassaOlo();
-                siirraKaikkea();
-            }
+            vuoro();
         }
         if (aika.getSource() == uusiEste) {
             this.esteet.add(new Hitler(arpoja.nextInt(9)));
         }
         repaint();
+    }
+
+    /**
+     * Jos hahmo on elossa, tarkistaa ammusten ja esteiden yhteentörmäykset ja
+     * kutsuu siirtymismetodia
+     */
+    private void vuoro() {
+        if (tarkastaEttaHahmoElaa()) {
+            tarkastaAmmuksenOsuminenEsteisiin();
+            tarkastaEsteidenTuhoutuminen();
+            siirraKaikkea();
+        }
     }
 
     /**
@@ -123,14 +131,15 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     }
 
     /**
-     * Tarkastaa onko ammukset törmänneet mihinkään, ja poistaa törmänneet
-     * ammukset
+     * Tarkastaa ammusten osumisen esteisiin, vähentää niiden kestävyyttä ja
+     * poistaa ne, jos kestävyys on nolla
      */
-    public void tarkastaAmmustenolemassaOlo() {
+    public void tarkastaAmmuksenOsuminenEsteisiin() {
         ArrayList poistettavat = new ArrayList<Ammus>();
         for (Este este : this.esteet) {
             for (Ammus ammus : hahmo.getAmmukset()) {
                 if (ammus.getRajat().intersects(este.getRajat())) {
+                    este.menetaKestavyys();
                     poistettavat.add(ammus);
                 }
             }
@@ -139,18 +148,12 @@ public class Piirtoalusta extends JPanel implements ActionListener {
     }
 
     /**
-     * Tarkastaa ammusten osumisen esteisiin, vähentää niiden kestävyyttä ja
-     * poistaa ne, jos kestävyys on nolla
+     * Tarkista onko esteitä, joiden kestävys on nolla, poista jos on ja lisää
+     * pisteitä ja vaikeutta
      */
-    public void tarkastaAmmuksenOsuminenEsteisiin() {
-        ArrayList poistettavat = new ArrayList<Este>();
+    public void tarkastaEsteidenTuhoutuminen() {
+        ArrayList poistettavat = new ArrayList<>();
         for (Este este : this.esteet) {
-            for (Ammus ammus : hahmo.getAmmukset()) {
-                if (ammus.getRajat().intersects(este.getRajat())) {
-                    este.menetaKestavyys();
-                }
-
-            }
             if (este.getKestavyys() == 0) {
                 poistettavat.add(este);
                 hahmo.saaPiste();
@@ -167,6 +170,39 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         int aika = uusiEste.getDelay();
         if (aika > 200) {
             uusiEste.setDelay(aika - 20);
+        }
+    }
+
+    /**
+     * Piirtää tämänhetkiset pisteet yläkulmaan
+     *
+     * @param graphics
+     */
+    public void piirraPisteet(Graphics graphics) {
+        graphics.setFont(new Font("Impact", Font.PLAIN, 24));
+        graphics.setColor(Color.BLACK);
+        graphics.drawString(Integer.toString(hahmo.getPisteet()), 920, 50);
+    }
+
+    /**
+     * Kutsuu jokoisen ammuksen piirto() metodia
+     *
+     * @param graphics
+     */
+    private void piirraAmmukset(Graphics graphics) {
+        for (Ammus ammus : hahmo.getAmmukset()) {
+            ammus.piirra(graphics);
+        }
+    }
+
+    /**
+     * Kutsuu jokoisen esteen piirto() metodia
+     *
+     * @param graphics
+     */
+    private void piirraEsteet(Graphics graphics) {
+        for (Este este : this.esteet) {
+            este.piirra(graphics);
         }
     }
 

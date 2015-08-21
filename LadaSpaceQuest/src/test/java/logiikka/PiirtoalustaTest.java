@@ -109,7 +109,7 @@ public class PiirtoalustaTest {
             hitler.menetaKestavyys();
         }
         alusta.getEsteet().add(hitler);
-        alusta.tarkastaAmmuksenOsuminenEsteisiin();
+        alusta.tarkastaEsteidenTuhoutuminen();
         assertEquals(alusta.getEsteet().size(), 0);
     }
 
@@ -120,7 +120,7 @@ public class PiirtoalustaTest {
             hitler.menetaKestavyys();
         }
         alusta.getEsteet().add(hitler);
-        alusta.tarkastaAmmuksenOsuminenEsteisiin();
+        alusta.tarkastaEsteidenTuhoutuminen();
         assertEquals(alusta.getHahmo().getPisteet(), 1);
     }
 
@@ -144,7 +144,7 @@ public class PiirtoalustaTest {
             hitler.menetaKestavyys();
         }
         alusta.getEsteet().add(hitler);
-        alusta.tarkastaAmmuksenOsuminenEsteisiin();
+        alusta.tarkastaEsteidenTuhoutuminen();
         assertEquals(alusta.uusiEste.getDelay(), 980);
     }
 }

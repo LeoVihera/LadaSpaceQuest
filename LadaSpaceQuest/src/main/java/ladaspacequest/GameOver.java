@@ -12,8 +12,8 @@ public class GameOver {
     private int kordX = 350;
     private int kordY = 250;
 
-    public GameOver(int pisteet) {
-        this.pisteet = pisteet;
+    public GameOver() {
+        this.pisteet = 0;
         this.nakyvyys = false;
     }
 
@@ -39,7 +39,7 @@ public class GameOver {
         if (this.nakyvyys) {
             graphics.setColor(Color.BLACK);
             graphics.fillRect(kordX, kordY, 300, 200);
-            graphics.setColor(Color.CYAN);
+            graphics.setColor(new Color(200, 200, 250));
             graphics.fillRect(kordX + 10, kordY + 10, 280, 180);
             graphics.setColor(Color.BLACK);
             graphics.drawString("Kuolit!    Pisteesi:   " + pisteet, kordX + 60, kordY + 60);
