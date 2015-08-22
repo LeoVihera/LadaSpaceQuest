@@ -4,29 +4,24 @@ import logiikka.NappaimistonKuuntelija;
 import logiikka.Piirtoalusta;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import kuviot.Lada;
 
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
-    private Piirtoalusta piirtoalusta = new Piirtoalusta();
+    private Ennatys ennatys;
+    private Piirtoalusta piirtoalusta;
+    
 
-    public Kayttoliittyma() {
+    public Kayttoliittyma(Ennatys ennatys) {
+         this.piirtoalusta = new Piirtoalusta(ennatys);
+         this.ennatys = ennatys;
     }
 
     private void luoKomponentit(Container container) {
         container.add(piirtoalusta);
-        frame.addKeyListener(new NappaimistonKuuntelija(piirtoalusta.getHahmo(), piirtoalusta, frame));
+        frame.addKeyListener(new NappaimistonKuuntelija(frame, piirtoalusta, ennatys));
     }
 
     @Override

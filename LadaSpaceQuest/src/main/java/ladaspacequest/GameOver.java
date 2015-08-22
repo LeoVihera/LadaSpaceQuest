@@ -46,6 +46,7 @@ public class GameOver {
             graphics.setFont(new Font("Impact", Font.PLAIN, 18));
             graphics.drawString("Paina R yrittääksesi uudelleen ", kordX + 40, kordY + 110);
             graphics.drawString("Paina T palataksesi valikkoon", kordX + 42, kordY + 140);
+            graphics.setFont(new Font("Impact", Font.PLAIN, 24));
         }
     }
 

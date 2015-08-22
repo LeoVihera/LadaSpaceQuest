@@ -21,10 +21,12 @@ import javax.swing.SwingUtilities;
  */
 public class GraafinenKayttis extends javax.swing.JFrame {
 
+    private Ennatys ennatys;
     /**
      * Creates new form GraafinenKayttis
      */
     public GraafinenKayttis() {
+        this.ennatys = new Ennatys(0);
         initComponents();
         aloitaMusiikki();
     }
@@ -261,7 +263,7 @@ public class GraafinenKayttis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Kayttoliittyma kayttoliittyma = new Kayttoliittyma();
+        Kayttoliittyma kayttoliittyma = new Kayttoliittyma(ennatys);
         SwingUtilities.invokeLater(kayttoliittyma);
     }//GEN-LAST:event_jButton1ActionPerformed
 

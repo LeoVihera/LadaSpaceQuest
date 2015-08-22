@@ -14,29 +14,30 @@ import kuviot.Ammus;
 import kuviot.Este;
 import kuviot.Hitler;
 import kuviot.Kuvio;
+import ladaspacequest.Ennatys;
 import ladaspacequest.GameOver;
 
 /**
- * 
+ *
  * @author Leo
  */
 public class Piirtoalusta extends JPanel implements ActionListener {
 
-    
     private final Lada hahmo = new Lada();
     private final ArrayList<Este> esteet;
     Timer uudelleenPiirto = new Timer(50, this);
     Timer uusiEste = new Timer(1000, this);
     Random arpoja = new Random();
     GameOver loppu = new GameOver();
+    private Ennatys ennatys;
 
-    
-    public Piirtoalusta() {
+    public Piirtoalusta(Ennatys ennatys) {
         super.setBackground(new Color(150, 150, 230));
         boolean musiikki = false;
         this.esteet = new ArrayList<>();
         uudelleenPiirto.start();
         uusiEste.start();
+        this.ennatys = ennatys;
     }
 
     /**
@@ -52,6 +53,7 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         piirraAmmukset(graphics);
         piirraEsteet(graphics);
         loppu.piirra(graphics);
+        graphics.drawString("Paras:  " + this.ennatys.getEnnatys(), 30, 50);
     }
 
     /**
@@ -126,6 +128,8 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         hahmo.setHengissa(false);
         loppu.setPisteet(hahmo.getPisteet());
         loppu.setNakyvyys(true);
+        if(hahmo.getPisteet() > this.ennatys.getEnnatys()){
+        ennatys.setEnnatys(hahmo.getPisteet());}
         repaint();
         return false;
     }
@@ -212,6 +216,10 @@ public class Piirtoalusta extends JPanel implements ActionListener {
 
     public ArrayList<Este> getEsteet() {
         return esteet;
+    }
+
+    public Ennatys getEnnatys() {
+        return ennatys;
     }
 
 }

@@ -1,25 +1,25 @@
 package logiikka;
 
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import kuviot.Lada;
 import ladaspacequest.Kayttoliittyma;
+import ladaspacequest.Ennatys;
 
 public class NappaimistonKuuntelija implements KeyListener {
 
     private Piirtoalusta piirtoalusta;
     private Lada hahmo;
     private JFrame frame;
+    private Ennatys ennatys;
 
-    public NappaimistonKuuntelija(Lada hahmo, Piirtoalusta alusta, JFrame frame) {
-        this.hahmo = hahmo;
-        this.piirtoalusta = alusta;
+    public NappaimistonKuuntelija(JFrame frame, Piirtoalusta piirtoalusta, Ennatys ennatys) {
         this.frame = frame;
+        this.piirtoalusta = piirtoalusta;
+        this.hahmo = piirtoalusta.getHahmo();
+        this.ennatys = ennatys;
     }
 
     /**
@@ -40,8 +40,9 @@ public class NappaimistonKuuntelija implements KeyListener {
             hahmo.ammu();
         } else if (e.getKeyCode() == KeyEvent.VK_R) {
             if (!hahmo.isHengissa()) {
+                
                 frame.dispose();
-                Kayttoliittyma kayttoliittyma = new Kayttoliittyma();
+                Kayttoliittyma kayttoliittyma = new Kayttoliittyma(ennatys);
                 SwingUtilities.invokeLater(kayttoliittyma);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_T) {
@@ -58,4 +59,6 @@ public class NappaimistonKuuntelija implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
     }
+    
+    
 }
