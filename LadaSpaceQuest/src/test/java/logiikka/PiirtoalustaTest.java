@@ -7,6 +7,7 @@ package logiikka;
 
 import kuviot.Hitler;
 import kuviot.Lada;
+import ladaspacequest.Ennatys;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,7 +25,7 @@ public class PiirtoalustaTest {
 
     @Before
     public void setUp() {
-        alusta = new Piirtoalusta();
+        alusta = new Piirtoalusta(new Ennatys(0));
     }
 
     @Test

@@ -47,3 +47,5 @@
 **21.08.15** 1t, koodia siistitty.
 
 **22.08.15** 1,5t, parhaan tuloksen esittäminen lisätty.
+
+**25.08.15** 1t, sekvenssikaavioita lisätty, testausdokumentaatiota kirjoitettu ja pit uusittu.
