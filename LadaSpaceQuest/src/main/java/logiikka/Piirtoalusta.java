@@ -128,8 +128,9 @@ public class Piirtoalusta extends JPanel implements ActionListener {
         hahmo.setHengissa(false);
         loppu.setPisteet(hahmo.getPisteet());
         loppu.setNakyvyys(true);
-        if(hahmo.getPisteet() > this.ennatys.getEnnatys()){
-        ennatys.setEnnatys(hahmo.getPisteet());}
+        if (hahmo.getPisteet() > this.ennatys.getEnnatys()) {
+            ennatys.setEnnatys(hahmo.getPisteet());
+        }
         repaint();
         return false;
     }

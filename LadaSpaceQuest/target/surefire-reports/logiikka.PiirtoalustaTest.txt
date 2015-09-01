@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: logiikka.PiirtoalustaTest
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.002 sec
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.869 sec

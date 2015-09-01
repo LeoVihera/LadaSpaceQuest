@@ -7,6 +7,7 @@ package ladaspacequest;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -14,6 +15,10 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.SwingUtilities;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 /**
  *
@@ -22,6 +27,7 @@ import javax.swing.SwingUtilities;
 public class GraafinenKayttis extends javax.swing.JFrame {
 
     private Ennatys ennatys;
+
     /**
      * Creates new form GraafinenKayttis
      */
@@ -270,7 +276,7 @@ public class GraafinenKayttis extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jFrame3.setPreferredSize(new Dimension(1000, 600));
         jFrame3.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -323,16 +329,16 @@ public class GraafinenKayttis extends javax.swing.JFrame {
     /**
      * Käynnistää musiikin
      */
-    public void aloitaMusiikki() {
+    public synchronized void aloitaMusiikki() {
         try {
-            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("musiikki.wav"));
             Clip clip = AudioSystem.getClip();
+            AudioInputStream audio = AudioSystem.getAudioInputStream(GraafinenKayttis.class.getResource("/musiikki.wav"));
             clip.open(audio);
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException uae) {
-            System.out.println(uae);
+            System.err.println(uae.getMessage());
         }
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

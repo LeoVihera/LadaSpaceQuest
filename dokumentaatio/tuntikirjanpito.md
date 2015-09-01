@@ -49,3 +49,5 @@
 **22.08.15** 1,5t, parhaan tuloksen esittäminen lisätty.
 
 **25.08.15** 1t, sekvenssikaavioita lisätty, testausdokumentaatiota kirjoitettu ja pit uusittu.
+
+**01.09.15** 3t, pientä hiomista, jar luotu(taistelun kautta, koska äänet eivät meinanneet toimia), rakennekuvaus kirjoitettu.

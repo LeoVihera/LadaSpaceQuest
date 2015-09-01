@@ -78,7 +78,7 @@ public class PiirtoalustaTest {
         Hitler hitler = new Hitler(5);
         alusta.getEsteet().add(hitler);
         Thread.sleep(200);
-        assertEquals(alusta.getEsteet().get(0).getKordX(), 955);
+        assertEquals(alusta.getEsteet().get(0).getKordX(), 940);
     }
 
     @Test
@@ -147,5 +147,20 @@ public class PiirtoalustaTest {
         alusta.getEsteet().add(hitler);
         alusta.tarkastaEsteidenTuhoutuminen();
         assertEquals(alusta.uusiEste.getDelay(), 980);
+    }
+
+    @Test
+    public void ennatysPaivittyy() throws Exception {
+        alusta.getHahmo().saaPiste();
+        Thread.sleep(3000);
+        assertEquals(alusta.getEnnatys().getEnnatys(), 1);
+    }
+
+    @Test
+    public void ennatysEiKasvaJosUudetPisteetVahemman() throws Exception {
+        alusta.getEnnatys().setEnnatys(6);
+        alusta.getHahmo().saaPiste();
+        Thread.sleep(3000);
+        assertEquals(alusta.getEnnatys().getEnnatys(), 6);
     }
 }

@@ -2,7 +2,10 @@
 
 package ladaspacequest;
 
-
+/**
+ * Luokka jota käytetään ennätys-luvun säilyttämiseen
+ * @author Leo
+ */
 public class Ennatys {
     private int ennatys;
     

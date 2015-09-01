@@ -23,7 +23,7 @@ public class Hitler extends Este {
         super(1000, 70 * sijainti);
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("hitlerala1.png"));
+            img = ImageIO.read(this.getClass().getResource("/hitlerala1.png"));
         } catch (IOException e) {
         }
         this.kuva = img;
